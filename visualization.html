@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Visualizations and summary of Mars Crater data including univariate and bivariate graphs.">
+  <title>Visualization and Summary</title>
+
+  <link rel="icon" href="images/download%20(7).jpg" type="image/jpeg">
+  <link rel="shortcut icon" href="images/download%20(7).jpg" type="image/jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=Fira+Code:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    /* ─── Reset ─── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    /* ─── Base ─── */
+    body {
+      background: #fff;
+      color: #111;
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ─── Header Nav ─── */
+    .top-nav {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 24px 32px;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .top-nav a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: color 0.2s;
+    }
+    .top-nav a:hover {
+      color: #fff;
+    }
+
+    /* ─── Hero ─── */
+    .hero {
+      position: relative;
+      height: 520px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.72) 100%),
+        url('images/Mars Wallpaper.jpg') center center / cover no-repeat;
+    }
+
+    .hero-content {
+      position: relative;
+      width: 100%;
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 28px 52px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.65);
+      margin-bottom: 14px;
+    }
+
+    .hero-eyebrow i {
+      font-size: 0.7rem;
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      max-width: 640px;
+    }
+
+    .hero-meta {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.55);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hero-meta i {
+      margin-right: 5px;
+    }
+
+    /* ─── Layout ─── */
+    .page-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* ─── Typography ─── */
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+      color: #111;
+      line-height: 1.2;
+      margin: 64px 0 18px;
+    }
+
+    h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #111;
+      margin: 36px 0 10px;
+      letter-spacing: -0.01em;
+    }
+
+    p {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    a {
+      color: #0057ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    strong {
+      color: #111;
+      font-weight: 600;
+    }
+
+    /* ─── Section divider ─── */
+    .section-rule {
+      border: none;
+      border-top: 1.5px solid #e8e8e8;
+      margin: 56px 0 0;
+    }
+
+    /* ─── Byline ─── */
+    .byline {
+      padding: 36px 0 0;
+      border-bottom: 1px solid #e8e8e8;
+      margin-bottom: 0;
+    }
+
+    .byline-inner {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding-bottom: 28px;
+    }
+
+    .byline-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .byline-text {
+      font-size: 0.85rem;
+      color: #666;
+    }
+
+    .byline-name {
+      font-weight: 600;
+      color: #111;
+      font-size: 0.9rem;
+    }
+
+    /* ─── Intro lead ─── */
+    .lead {
+      font-size: 1.15rem;
+      color: #444;
+      line-height: 1.8;
+      margin: 40px 0 28px;
+      border-left: 3px solid #111;
+      padding-left: 22px;
+    }
+
+    /* ─── Callout ─── */
+    .callout {
+      border-left: 3px solid;
+      border-radius: 0 4px 4px 0;
+      padding: 16px 20px;
+      margin: 28px 0;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      background: #f5f8ff;
+      border-color: #0057ff;
+      color: #2a3f6f;
+    }
+    
+    .callout p {
+      margin: 0;
+    }
+
+    /* ─── Code block ─── */
+    .code-wrap {
+      margin: 28px 0;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .code-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #1e1e2e;
+      padding: 10px 16px;
+    }
+
+    .code-bar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .code-dots {
+      display: flex;
+      gap: 5px;
+    }
+
+    .code-dots span {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+    }
+
+    .code-dots span:nth-child(1) { background: #ff5f57; }
+    .code-dots span:nth-child(2) { background: #febc2e; }
+    .code-dots span:nth-child(3) { background: #28c840; }
+
+    .code-filename {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.72rem;
+      color: rgba(255, 255, 255, 0.38);
+      letter-spacing: 0.07em;
+    }
+
+    .code-lang-badge {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 3px;
+      padding: 1px 7px;
+    }
+
+    pre {
+      background: #0f0f1a;
+      padding: 22px 24px;
+      overflow-x: auto;
+      margin: 0;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.825rem;
+      line-height: 1.8;
+      color: #cdd6f4;
+    }
+
+    .kw { color: #cba6f7; }
+    .fn { color: #89dceb; }
+    .str { color: #a6e3a1; }
+    .cmt { color: #585b70; font-style: italic; }
+    .num { color: #fab387; }
+    .op { color: #89dceb; }
+    .var { color: #cdd6f4; }
+    .punc { color: #89dceb; }
+
+    /* ─── Footer ─── */
+    .post-footer {
+      margin-top: 80px;
+      padding: 28px 0 60px;
+      border-top: 1.5px solid #e8e8e8;
+      display: flex;
+      align-items: flex-start;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+
+    .footer-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      flex: 1;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 5px 12px;
+      border-radius: 100px;
+      background: #f0f0f0;
+      color: #555;
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background .15s;
+    }
+
+    .tag:hover {
+      background: #e0e0e0;
+      color: #111;
+    }
+
+    .footer-course {
+      font-size: 0.75rem;
+      color: #aaa;
+      text-align: right;
+      line-height: 1.6;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="top-nav">
+    <a href="data_management.html"><i class="fa-solid fa-arrow-left" style="margin-right: 6px;"></i> Back to Part 2</a>
+  </div>
+
+  <!-- ══════ HERO ══════ -->
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <i class="fa-solid fa-satellite-dish"></i>
+        Data Analysis &amp; Interpretation — Week 2
+      </div>
+      <h1>Visualization &amp; Summary</h1>
+      <div class="hero-meta">
+        <span><i class="fa-regular fa-calendar"></i> April 19, 2026</span>
+        <span><i class="fa-regular fa-user"></i> Pacifique Manzi</span>
+        <span><i class="fa-solid fa-database"></i> Robbins Mars Crater Database</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════ BODY ══════ -->
+  <div class="page-wrap">
+
+    <div class="byline">
+      <div class="byline-inner">
+        <div class="byline-avatar"><i class="fa-solid fa-user"></i></div>
+        <div>
+          <div class="byline-name">Pacifique Manzi</div>
+          <div class="byline-text">Posted for <strong>Data Analysis and Interpretation</strong> — Wesleyan University
+            via Coursera &nbsp;·&nbsp; Week 2 Assignment</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lead -->
+    <p class="lead">
+      There are a variety of conventional ways to visualize data — tables, histograms, bar graphs, etc. Now that the data has been managed, it is time to graph the variables. This portion of the project provides visual representations of the data and helps to better display the findings.
+    </p>
+
+    <!-- ══ UNIVARIATE GRAPHS ══ -->
+    <hr class="section-rule">
+    <h2><i class="fa-solid fa-chart-simple" style="font-size:0.7em;margin-right:12px;opacity:0.4;"></i>Univariate Graphs</h2>
+    
+    <p>To better understand the geological characteristics of Mars, I started by graphing the frequency distributions of crater sizes and depths independently.</p>
+
+    <div class="code-wrap">
+      <div class="code-bar">
+        <div class="code-bar-left">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span class="code-filename">marscrater.ipynb</span>
+        </div>
+        <span class="code-lang-badge">Python</span>
+      </div>
+      <pre><span class="kw">import</span> <span class="cls">seaborn</span> <span class="kw">as</span> <span class="var">sns</span>
+<span class="kw">import</span> <span class="cls">matplotlib.pyplot</span> <span class="kw">as</span> <span class="var">plt</span>
+
+<span class="cmt"># Univariate bar graph for the categorical 'diameter_category' variable</span>
+<span class="var">sns</span><span class="punc">.</span><span class="fn">countplot</span><span class="punc">(</span>x<span class="op">=</span><span class="str">"diameter_category"</span><span class="punc">,</span> data<span class="op">=</span><span class="var">clean_data</span><span class="punc">)</span>
+<span class="var">plt</span><span class="punc">.</span><span class="fn">xlabel</span><span class="punc">(</span><span class="str">'Crater Size Category'</span><span class="punc">)</span>
+<span class="var">plt</span><span class="punc">.</span><span class="fn">ylabel</span><span class="punc">(</span><span class="str">'Count'</span><span class="punc">)</span>
+<span class="var">plt</span><span class="punc">.</span><span class="fn">title</span><span class="punc">(</span><span class="str">'Distribution of Martian Crater Sizes'</span><span class="punc">)</span>
+<span class="var">plt</span><span class="punc">.</span><span class="fn">show</span><span class="punc">()</span>
+
+<span class="cmt"># Univariate histogram for the quantitative 'DEPTH_RIMFLOOR_TOPOG' variable</span>
+<span class="var">sns</span><span class="punc">.</span><span class="fn">histplot</span><span class="punc">(</span><span class="var">clean_data</span><span class="punc">[</span><span class="str">"DEPTH_RIMFLOOR_TOPOG"</span><span class="punc">]</span><span class="punc">.</span><span class="fn">dropna</span><span class="punc">(),</span> kde<span class="op">=</span><span class="kw">False</span><span class="punc">,</span> bins<span class="op">=</span><span class="num">20</span><span class="punc">)</span>
+<span class="var">plt</span><span class="punc">.</span><span class="fn">xlabel</span><span class="punc">(</span><span class="str">'Crater Depth (km)'</span><span class="punc">)</span>
+<span class="var">plt</span><span class="punc">.</span><span class="fn">ylabel</span><span class="punc">(</span><span class="str">'Frequency'</span><span class="punc">)</span>
+<span class="var">plt</span><span class="punc">.</span><span class="fn">title</span><span class="punc">(</span><span class="str">'Distribution of Martian Crater Depths'</span><span class="punc">)</span>
+<span class="var">plt</span><span class="punc">.</span><span class="fn">show</span><span class="punc">()</span></pre>
+    </div>
+
+    <h3>What the Univariate Graphs Reveal</h3>
+    
+    <div style="margin: 28px 0; display: flex; flex-wrap: wrap; gap: 20px;">
+      <img src="images/univariate_diam.png" alt="Univariate Diameter Distribution" style="flex: 1; min-width: 300px; border-radius: 6px; border: 1px solid #e0e0e0; max-width: 100%;">
+      <img src="images/univariate_depth.png" alt="Univariate Depth Distribution" style="flex: 1; min-width: 300px; border-radius: 6px; border: 1px solid #e0e0e0; max-width: 100%;">
+    </div>
+
+    <p>The bar graph for crater size categories reveals a stark imbalance: the vast majority of craters fall into the <strong>Small</strong> and <strong>Medium</strong> categories, with a rapid drop-off in <strong>Large</strong> and <strong>Basin</strong> structures. This indicates a heavy right-skew in impactor sizes. Similarly, the histogram for crater depth shows that the distribution is centered around 0.5 km, with the spread indicating that while shallow craters are abundant, craters deeper than 3 km are exceedingly rare.</p>
+
+    <!-- ══ BIVARIATE GRAPHS ══ -->
+    <hr class="section-rule">
+    <h2><i class="fa-solid fa-chart-line" style="font-size:0.7em;margin-right:12px;opacity:0.4;"></i>Bivariate Graphs</h2>
+    
+    <p>To examine the relationship between crater diameter and depth, I created two bivariate graphs: a scatterplot showing the exact continuous relationship, and a bar chart showing the average depth per size category.</p>
+
+    <div class="code-wrap">
+      <div class="code-bar">
+        <div class="code-bar-left">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span class="code-filename">marscrater.ipynb</span>
+        </div>
+        <span class="code-lang-badge">Python</span>
+      </div>
+      <pre><span class="cmt"># Bivariate scatterplot (Quantitative -> Quantitative)</span>
+<span class="var">sns</span><span class="punc">.</span><span class="fn">regplot</span><span class="punc">(</span>x<span class="op">=</span><span class="str">"DIAM_CIRCLE_IMAGE"</span><span class="punc">,</span> y<span class="op">=</span><span class="str">"DEPTH_RIMFLOOR_TOPOG"</span><span class="punc">,</span> fit_reg<span class="op">=</span><span class="kw">False</span><span class="punc">,</span> data<span class="op">=</span><span class="var">clean_data</span><span class="punc">)</span>
+<span class="var">plt</span><span class="punc">.</span><span class="fn">xlabel</span><span class="punc">(</span><span class="str">'Crater Diameter (km)'</span><span class="punc">)</span>
+<span class="var">plt</span><span class="punc">.</span><span class="fn">ylabel</span><span class="punc">(</span><span class="str">'Crater Depth (km)'</span><span class="punc">)</span>
+<span class="var">plt</span><span class="punc">.</span><span class="fn">title</span><span class="punc">(</span><span class="str">'Association Between Crater Diameter and Depth on Mars'</span><span class="punc">)</span>
+<span class="var">plt</span><span class="punc">.</span><span class="fn">show</span><span class="punc">()</span>
+
+<span class="cmt"># Bivariate bar graph (Categorical -> Quantitative)</span>
+<span class="var">sns</span><span class="punc">.</span><span class="fn">catplot</span><span class="punc">(</span>x<span class="op">=</span><span class="str">'diameter_category'</span><span class="punc">,</span> y<span class="op">=</span><span class="str">'DEPTH_RIMFLOOR_TOPOG'</span><span class="punc">,</span> data<span class="op">=</span><span class="var">clean_data</span><span class="punc">,</span> kind<span class="op">=</span><span class="str">"bar"</span><span class="punc">,</span> errorbar<span class="op">=</span><span class="kw">None</span><span class="punc">)</span> 
+<span class="var">plt</span><span class="punc">.</span><span class="fn">xlabel</span><span class="punc">(</span><span class="str">'Crater Size Category'</span><span class="punc">)</span>
+<span class="var">plt</span><span class="punc">.</span><span class="fn">ylabel</span><span class="punc">(</span><span class="str">'Average Crater Depth (km)'</span><span class="punc">)</span>
+<span class="var">plt</span><span class="punc">.</span><span class="fn">title</span><span class="punc">(</span><span class="str">'Average Depth across Crater Size Categories'</span><span class="punc">)</span>
+<span class="var">plt</span><span class="punc">.</span><span class="fn">show</span><span class="punc">()</span></pre>
+    </div>
+
+    <h3>What the Bivariate Graphs Reveal</h3>
+
+    <div style="margin: 28px 0; display: flex; flex-wrap: wrap; gap: 20px;">
+      <img src="images/bivariate_scatter.png" alt="Bivariate Scatterplot" style="flex: 1; min-width: 300px; border-radius: 6px; border: 1px solid #e0e0e0; max-width: 100%;">
+      <img src="images/bivariate_bar.png" alt="Bivariate Bar Chart" style="flex: 1; min-width: 300px; border-radius: 6px; border: 1px solid #e0e0e0; max-width: 100%;">
+    </div>
+
+    <p>To test my hypothesis regarding crater dimensions, I created a scatterplot analyzing Crater Diameter (explanatory variable) against Crater Depth (response variable). The graph reveals a <strong>positive, non-linear</strong> association between the two. Specifically, as the diameter of the crater initially increases, the depth also increases rapidly. However, this relationship plateaus; once craters exceed roughly 100 km in width, their depth stops increasing and generally remains under 3 kilometers.</p>
+    
+    <p>This suggests that while larger impacts initially excavate deeper into the Martian crust, maximum depth is ultimately limited by geological factors such as crustal rebound, or long-term erosion and infilling of the oldest, largest basins. Additionally, the wide vertical spread among smaller craters highlights significant variation, likely due to different rates of erosion and the varying ages of the impacts.</p>
+
+    <div class="callout">
+      <p>To further clarify the relationship between crater dimensions, the bivariate bar graph comparing the <strong>Crater Size Category</strong> against the <strong>Average Crater Depth</strong> reveals a clear, positive association: as the size category increases, the average depth also increases.</p>
+      <br>
+      <p>However, the rate of increase tells an interesting geological story. While the average depth more than doubles when moving from Medium to Large craters, the increase in depth from Large to Basin is surprisingly small. Even though Basins are vastly wider than Large craters, they are only slightly deeper on average (peaking around 1.25 km). This confirms that there is a 'depth ceiling' on Mars; once an impact creates a massive basin, geological forces prevent it from remaining proportionally deep over time.</p>
+    </div>
+
+    <!-- Footer -->
+    <div class="post-footer">
+      <div class="footer-tags">
+        <a href="#" class="tag">data visualization</a>
+        <a href="#" class="tag">mars</a>
+        <a href="#" class="tag">seaborn</a>
+        <a href="#" class="tag">coursera</a>
+        <a href="#" class="tag">python</a>
+      </div>
+      <div class="footer-course">
+        Data Analysis and Interpretation<br>
+        Wesleyan University via Coursera<br>
+        <span style="color:#ccc">Robbins (2019) · NASA PDS</span>
+      </div>
+    </div>
+
+  </div><!-- /.page-wrap -->
+</body>
+
+</html>
