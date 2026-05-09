@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Describing the sample, data collection procedures, and measures used in analyzing the Robbins Global Martian Crater Database.">
+  <title>Sample, Data Collection, and Measures</title>
+
+  <link rel="icon" href="images/download%20(7).jpg" type="image/jpeg">
+  <link rel="shortcut icon" href="images/download%20(7).jpg" type="image/jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    /* ─── Reset ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    /* ─── Base ─── */
+    body { background: #fff; color: #111; font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.75; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    /* ─── Header Nav ─── */
+    .top-nav { position: absolute; top: 0; left: 0; right: 0; padding: 24px 32px; z-index: 10; display: flex; justify-content: space-between; align-items: center; }
+    .top-nav a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.85rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; transition: color 0.2s; }
+    .top-nav a:hover { color: #fff; }
+    /* ─── Hero ─── */
+    .hero { position: relative; height: 520px; overflow: hidden; display: flex; align-items: flex-end; }
+    .hero-bg { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.72) 100%), url('images/Mars Wallpaper.jpg') center center / cover no-repeat; }
+    .hero-content { position: relative; width: 100%; max-width: 780px; margin: 0 auto; padding: 0 28px 52px; }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255, 255, 255, 0.65); margin-bottom: 14px; }
+    .hero-eyebrow i { font-size: 0.7rem; }
+    .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.2rem, 5vw, 3.4rem); color: #fff; line-height: 1.15; margin-bottom: 16px; max-width: 640px; }
+    .hero-meta { font-size: 0.8rem; color: rgba(255, 255, 255, 0.55); display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .hero-meta i { margin-right: 5px; }
+    /* ─── Layout ─── */
+    .page-wrap { max-width: 780px; margin: 0 auto; padding: 0 28px; }
+    /* ─── Typography ─── */
+    h2 { font-family: 'DM Serif Display', serif; font-size: clamp(1.75rem, 3.5vw, 2.4rem); color: #111; line-height: 1.2; margin: 64px 0 18px; }
+    h3 { font-family: 'Inter', sans-serif; font-size: 1.05rem; font-weight: 600; color: #111; margin: 36px 0 10px; letter-spacing: -0.01em; }
+    p { color: #333; margin-bottom: 20px; }
+    a { color: #0057ff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    strong { color: #111; font-weight: 600; }
+    ul { margin: 0 0 20px 20px; color: #333; }
+    li { margin-bottom: 8px; }
+    /* ─── Section divider ─── */
+    .section-rule { border: none; border-top: 1.5px solid #e8e8e8; margin: 56px 0 0; }
+    /* ─── Byline ─── */
+    .byline { padding: 36px 0 0; border-bottom: 1px solid #e8e8e8; margin-bottom: 0; }
+    .byline-inner { display: flex; align-items: flex-start; gap: 14px; padding-bottom: 28px; }
+    .byline-avatar { width: 44px; height: 44px; border-radius: 50%; background: #111; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.9rem; flex-shrink: 0; margin-top: 2px; }
+    .byline-text { font-size: 0.85rem; color: #666; }
+    .byline-name { font-weight: 600; color: #111; font-size: 0.9rem; }
+    /* ─── Intro lead ─── */
+    .lead { font-size: 1.15rem; color: #444; line-height: 1.8; margin: 40px 0 28px; border-left: 3px solid #111; padding-left: 22px; }
+    /* ─── Footer ─── */
+    .post-footer { margin-top: 80px; padding: 28px 0 60px; border-top: 1.5px solid #e8e8e8; display: flex; align-items: flex-start; gap: 28px; flex-wrap: wrap; }
+    .footer-tags { display: flex; gap: 8px; flex-wrap: wrap; flex: 1; }
+    .tag { display: inline-block; padding: 5px 12px; border-radius: 100px; background: #f0f0f0; color: #555; font-size: 0.75rem; font-weight: 500; text-decoration: none; transition: background .15s; }
+    .tag:hover { background: #e0e0e0; color: #111; }
+    .footer-course { font-size: 0.75rem; color: #aaa; text-align: right; line-height: 1.6; }
+  </style>
+</head>
+
+<body>
+
+  <div class="top-nav">
+    <a href="moderation.html"><i class="fa-solid fa-arrow-left" style="margin-right: 6px;"></i> Part 7: Moderation</a>
+    <a href="#">Regression Modeling <i class="fa-solid fa-arrow-right" style="margin-left: 6px;"></i></a>
+  </div>
+
+  <!-- ══════ HERO ══════ -->
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <i class="fa-solid fa-satellite-dish"></i>
+        Regression Modeling in Practice — Week 1
+      </div>
+      <h1>Data Sample and Data Collection Procedures</h1>
+      <div class="hero-meta">
+        <span><i class="fa-regular fa-calendar"></i> May 9, 2026</span>
+        <span><i class="fa-regular fa-user"></i> Pacifique Manzi</span>
+        <span><i class="fa-solid fa-database"></i> Robbins Mars Crater Database</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════ BODY ══════ -->
+  <div class="page-wrap">
+
+    <div class="byline">
+      <div class="byline-inner">
+        <div class="byline-avatar"><i class="fa-solid fa-user"></i></div>
+        <div>
+          <div class="byline-name">Pacifique Manzi</div>
+          <div class="byline-text">Posted for <strong>Regression Modeling in Practice</strong> — Wesleyan University via Coursera &nbsp;·&nbsp; Week 1 Assignment</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lead -->
+    <p class="lead">
+      Before we jump into regression models, we need to clearly document the provenance of our dataset. A study's conclusions are only as sound as the sample they are based on. This blog entry outlines the sample characteristics, data collection procedures, and the specific measures I am using from the Robbins Global Mars Crater Database.
+    </p>
+
+    <!-- ══ SAMPLE ══ -->
+    <hr class="section-rule">
+    <h2><i class="fa-solid fa-layer-group" style="font-size:0.7em;margin-right:12px;opacity:0.4;"></i>1. The Sample</h2>
+    
+    <p>The sample for this project is drawn from the <strong>Robbins Global Martian Crater Database</strong>. This database represents a comprehensive catalog of impact craters across the entire surface of Mars. The full dataset includes 384,343 individual craters, making it one of the largest planetary features datasets ever compiled.</p>
+    
+    <p>According to Robbins (2011), the database is statistically complete for craters down to 1 kilometer in diameter across the entire Martian globe. This means that virtually every crater on Mars larger than 1 km has been identified, measured, and included in this sample.</p>
+    
+    <p>However, for the purpose of my specific research question — which investigates the relationship between crater diameter and depth, and how ejecta morphology moderates this relationship — I cannot use the entire raw sample. I systematically excluded craters that lack a recorded depth value or have no classification for ejecta morphology. After applying these filters, my analytical sample consists of approximately <strong>76,000 to 80,000 craters</strong> (the exact number varies slightly depending on outlier trimming during specific statistical procedures).</p>
+
+    <!-- ══ PROCEDURES ══ -->
+    <hr class="section-rule">
+    <h2><i class="fa-solid fa-satellite" style="font-size:0.7em;margin-right:12px;opacity:0.4;"></i>2. Data Collection Procedure</h2>
+    
+    <p>The data collection procedure for this database was an extraordinarily labor-intensive process combining automated data retrieval and manual human classification.</p>
+    
+    <p>The primary source images used to identify and measure the craters were captured by the Thermal Emission Imaging System (THEMIS) daytime and nighttime infrared imagery from the Mars Odyssey spacecraft, which has a resolution of 100 meters per pixel. Topographic data (for calculating crater depth) was derived from the Mars Orbiter Laser Altimeter (MOLA) instrument aboard the Mars Global Surveyor.</p>
+    
+    <p>The actual data collection was carried out primarily by Dr. Stuart Robbins. Rather than relying entirely on automated crater-counting algorithms (which can struggle with degraded or overlapping craters), Robbins manually traced the rims of the craters using a software package called JMARS (Java Mission-planning and Analysis for Remote Sensing). The software then automatically calculated spatial properties, such as latitude, longitude, and diameter based on the manually fitted circles. The depth measurements were calculated by comparing the average elevation of the crater rim to the average elevation of the crater floor using the MOLA topographic maps.</p>
+
+    <!-- ══ MEASURES ══ -->
+    <hr class="section-rule">
+    <h2><i class="fa-solid fa-ruler-combined" style="font-size:0.7em;margin-right:12px;opacity:0.4;"></i>3. Measures & Data Management</h2>
+    
+    <p>My research question asks: <em>Are bigger Martian craters proportionally shallower than smaller ones, and does ejecta morphology act as a moderator for this relationship?</em></p>
+    
+    <p>To address this question, I extracted and managed three primary variables from the database:</p>
+
+    <h3>Primary Variables</h3>
+    <ul>
+      <li><strong>Diameter (<code>DIAM_CIRCLE_IMAGE</code>)</strong>: The independent (predictor) variable. This is a continuous quantitative measure representing the crater's diameter in kilometers, calculated from a circle fitted to the user-defined crater rim points. No specific data management transformations were permanently applied to this variable for the core regression analyses, although I occasionally bin it into categorical groups (e.g., Small, Medium, Large) for specific visualizations.</li>
+      
+      <li><strong>Depth (<code>DEPTH_RIMFLOOR_TOPOG</code>)</strong>: The dependent (response) variable. This is a continuous quantitative measure representing the distance in kilometers from the average crater rim to the average crater floor. 
+        <br><br><strong>Management:</strong> As mentioned above, a large portion of the raw dataset has a recorded depth of 0 (either unmeasurable or not recorded). I managed this by subsetting the data to only include rows where <code>DEPTH_RIMFLOOR_TOPOG &gt; 0</code>.</li>
+      
+      <li><strong>Ejecta Morphology (<code>MORPHOLOGY_EJECTA_1</code>)</strong>: The moderating categorical variable. This classifies the visual structure of the material thrown out during the impact (e.g., whether it forms fluid-like layers, which hints at subsurface ice).
+        <br><br><strong>Management:</strong> The raw variable has over 150 unique, highly specific string classifications. To make it usable for analysis, I performed a major data management step: I extracted the first two characters of each string (the prefix) and grouped them into six readable, geologically meaningful categories: <em>Single Layer</em>, <em>Double Layer</em>, <em>Multi Layer</em>, <em>Radial</em>, <em>Huge</em>, and <em>Other</em>. I also filtered out any rows where this field was completely blank.</li>
+    </ul>
+
+    <h3>Secondary (Derived) Variables</h3>
+    <p>For some analyses (like exploring frequency distributions), I created a secondary variable:</p>
+    <ul>
+      <li><strong>Depth-to-Diameter Ratio (<code>depth_diam_ratio</code>)</strong>: Calculated by dividing <code>DEPTH_RIMFLOOR_TOPOG</code> by <code>DIAM_CIRCLE_IMAGE</code>. This gives a normalized measure of how "bowl-shaped" versus "flat" a crater is, allowing for direct comparison of relative depth across different crater sizes.</li>
+    </ul>
+
+    <p>With the sample clearly defined, the origin of the measurements understood, and our variables cleaned and recoded, we are now fully prepared to build regression models to test our hypothesis mathematically.</p>
+
+    <!-- Footer -->
+    <div class="post-footer">
+      <div class="footer-tags">
+        <a href="#" class="tag">data collection</a>
+        <a href="#" class="tag">sample</a>
+        <a href="#" class="tag">measures</a>
+        <a href="#" class="tag">mars</a>
+        <a href="#" class="tag">coursera</a>
+      </div>
+      <div class="footer-course">
+        Regression Modeling in Practice<br>
+        Wesleyan University via Coursera<br>
+        <span style="color:#ccc">Week 1 Assignment</span>
+      </div>
+    </div>
+
+  </div><!-- /.page-wrap -->
+</body>
+
+</html>

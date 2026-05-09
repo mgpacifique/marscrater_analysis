@@ -31,6 +31,13 @@
 | Week 3 | Pearson Correlation | ✅ Complete | [Part 6](https://mgpacifique.github.io/marscrater_analysis/pearson_correlation.html) |
 | Week 4 | Exploring Statistical Interactions | ✅ Complete | [Part 7](https://mgpacifique.github.io/marscrater_analysis/moderation.html) |
 
+### Course 3: Regression Modeling in Practice
+**Status:** 🔄 In Progress
+
+| Assignment | Topic | Status | Blog Link |
+|------------|-------|--------|-----------|
+| Week 1 | Sample and Measures | ✅ Complete | [Part 8](https://mgpacifique.github.io/marscrater_analysis/sample_measures.html) |
+
 ---
 
 ## Research Question & Hypothesis
